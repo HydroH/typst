@@ -49,6 +49,7 @@ pub fn module() -> Module {
     scope.define_func::<div_euclid>();
     scope.define_func::<rem_euclid>();
     scope.define_func::<quo>();
+    scope.define_func::<is_nan>();
     scope.define("inf", f64::INFINITY);
     scope.define("nan", f64::NAN);
     scope.define("pi", std::f64::consts::PI);
@@ -906,6 +907,20 @@ pub fn quo(
     }
 
     Ok(floor(dividend.apply2(divisor.v, Div::div, Div::div)))
+}
+
+/// Determines whether a number is Nan.
+///
+/// ```example
+/// #calc.is-nan(0) \
+/// #calc.is-nan(calc.nan)
+/// ```
+#[func]
+pub fn is_nan(
+    /// The number to check for NaN.
+    value: Num,
+) -> bool {
+    value.float().is_nan()
 }
 
 /// A value which can be passed to functions that work with integers and floats.

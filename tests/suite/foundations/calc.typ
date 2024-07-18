@@ -259,3 +259,7 @@
 --- calc-max-uncomparable ---
 // Error: 16-19 cannot compare 1pt with 1em
 #calc.max(1em, 1pt)
+
+--- calc-is-nan ---
+#test(calc.is-nan(0), false)
+#test(calc.is-nan(calc.nan), true)
